@@ -13,7 +13,17 @@
     />
   </head>
   <body>
-    <div class="container">{% block content %}{% endblock %}</div>
+    {% include 'navbar.html' %}
+    <div class="container">
+      {% if messages %} 
+        {% for message in messages %} 
+          <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
+            {{message}}
+            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
+          </div>
+        {% endfor %}
+      {% endif %} {% block content %}{% endblock %}
+    </div>
 
     <script
       crossorigin="anonymous"
