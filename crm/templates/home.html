@@ -1,5 +1,5 @@
 {% extends 'base.html' %} {% block content %}
-<div class="col-md-6 offset-md-3 mt-3">
+<div>
   {% if user.is_authenticated %}
     {% include 'records.html' %}
   {% else %}
