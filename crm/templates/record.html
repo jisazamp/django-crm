@@ -1,7 +1,7 @@
 {% extends 'base.html' %} 
 {% block content %}
 <a class="btn btn-secondary mt-3" href="{% url 'home' %}">Go back</a>
-<a class="btn btn-danger mt-3" href="{% url 'home' %}">Delete</a>
+<a class="btn btn-danger mt-3" href="{% url 'delete_record' customer_record.id %}">Delete</a>
 
 <div class="card mt-3">
   <div class="card-header">
