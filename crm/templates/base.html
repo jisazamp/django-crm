@@ -15,17 +15,20 @@
   <body>
     {% include 'navbar.html' %}
     <div class="container">
-      {% if messages %} 
-        {% for message in messages %} 
-          <div class="alert alert-warning alert-dismissible fade show mt-4" role="alert">
-            {{message}}
-            <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
-          </div>
-        {% endfor %}
-      {% endif %} 
-
-      {% block content %}
-      {% endblock %}
+      {% if messages %} {% for message in messages %}
+      <div
+        class="alert alert-{% if message.level_tag == 'error' %}danger{% elif message.level_tag == 'success' %}success{% else %}warning{% endif %} alert-dismissible fade show mt-4"
+        role="alert"
+      >
+        {{message}}
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="alert"
+          aria-label="Close"
+        ></button>
+      </div>
+      {% endfor %} {% endif %} {% block content %} {% endblock %}
     </div>
 
     <script

@@ -1,0 +1,12 @@
+<br />
+<h1>Records</h1>
+
+<ul style="padding: 0;">
+  {% if records %}
+    {% for record in records %}
+      <li>{{record}}</li>
+    {% endfor %}
+  {% else %}
+    <p>No records found!</p>
+  {% endif %}
+</ul>

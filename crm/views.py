@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.contrib.auth import authenticate, login, logout
 from django.contrib import messages
 from .forms import SignUpForm
+from .models import Record
 
 
 def home(request):
@@ -17,7 +18,10 @@ def home(request):
             messages.error(request, "Something went wrong when trying to sign you in")
             return redirect("home")
     else:
-        return render(request, "home.html")
+        context = {}
+        context['records'] = Record.objects.all();
+
+        return render(request, "home.html", context)
 
 
 def logout_user(request):
@@ -27,8 +31,14 @@ def logout_user(request):
 
 
 def register_user(request):
+    context = {}
+
+    if request.user.is_authenticated:
+        return redirect("home")
+
     if request.method == "POST":
         form = SignUpForm(request.POST)
+        context["form"] = form
         if form.is_valid():
             form.save()
             username = form.cleaned_data["username"]
@@ -40,5 +50,6 @@ def register_user(request):
 
     else:
         form = SignUpForm()
+        context["form"] = form
 
-    return render(request, "register.html", {"form": form})
+    return render(request, "register.html", context)
