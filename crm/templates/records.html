@@ -1,29 +1,31 @@
-{% if records %} 
+{% if records %}
 <div class="table-responsive">
-<table class="table table-striped mt-3 table-hover table-bordered">
-  <thead class="table-dark">
-    <tr>
-      <th scope="col">ID</th>
-      <th scope="col">First</th>
-      <th scope="col">Last</th>
-      <th scope="col">City</th>
-      <th scope="col">Phone</th>
-      <th scope="col">ZIP</th>
-    </tr>
-  </thead>
-  <tbody>
-{% for record in records %}
-  <tr>
-      <th scope="row">{{record.id}}</th>
-      <td>{{record.first_name}}</td>
-      <td>{{record.last_name}}</td>
-      <td>{{record.city}}</td>
-      <td>{{record.phone}}</td>
-      <td>{{record.zip_code}}</td>
-  </tr>
-{% endfor %} 
-  </tbody>
-</table>
+  <table class="table table-striped mt-3 table-hover table-bordered">
+    <thead class="table-dark">
+      <tr>
+        <th scope="col" style="text-align: center">ID</th>
+        <th scope="col">First</th>
+        <th scope="col">Last</th>
+        <th scope="col">City</th>
+        <th scope="col">Phone</th>
+        <th scope="col">ZIP</th>
+      </tr>
+    </thead>
+    <tbody>
+      {% for record in records %}
+      <tr>
+        <th scope="row" style="text-align: center">
+          <a href="{% url 'record' record.id %}">{{record.id}}</a>
+        </th>
+        <td>{{record.first_name}}</td>
+        <td>{{record.last_name}}</td>
+        <td>{{record.city}}</td>
+        <td>{{record.phone}}</td>
+        <td>{{record.zip_code}}</td>
+      </tr>
+      {% endfor %}
+    </tbody>
+  </table>
 </div>
 {% else %}
 <p>No records found!</p>
