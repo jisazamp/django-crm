@@ -19,7 +19,7 @@ def home(request):
             return redirect("home")
     else:
         context = {}
-        context['records'] = Record.objects.all();
+        context["records"] = Record.objects.all()
 
         return render(request, "home.html", context)
 
@@ -60,12 +60,12 @@ def customer_record(request, pk):
 
     if request.user.is_authenticated:
         customer_record = Record.objects.get(id=pk)
-        context['customer_record'] = customer_record
+        context["customer_record"] = customer_record
         return render(request, "record.html", context)
     else:
-        messages.error(request, 'You must be logged in to see this page')
+        messages.error(request, "You must be logged in to see this page")
         return redirect("home")
-    
+
 
 def delete_record(request, pk):
     if request.user.is_authenticated:
@@ -74,5 +74,9 @@ def delete_record(request, pk):
         messages.success(request, f"Record with id {pk} deleted successfully")
         return redirect("home")
     else:
-        messages.error(request, 'You must be logged in to see this page')
+        messages.error(request, "You must be logged in to see this page")
         return redirect("home")
+
+
+def add_record(request):
+    return render(request, 'add_record.html', {})

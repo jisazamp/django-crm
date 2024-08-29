@@ -1,7 +1,12 @@
-{% extends 'base.html' %} 
-{% block content %}
+{% extends 'base.html' %} {% block content %}
 <a class="btn btn-secondary mt-3" href="{% url 'home' %}">Go back</a>
-<a class="btn btn-danger mt-3" href="{% url 'delete_record' customer_record.id %}">Delete</a>
+<a
+  class="btn btn-danger mt-3"
+  data-bs-target="#deleteModal"
+  data-bs-toggle="modal"
+  type="button"
+  >Delete</a
+>
 
 <div class="card mt-3">
   <div class="card-header">
@@ -17,4 +22,48 @@
     </p>
   </div>
 </div>
-{% endblock %}
+
+<div
+  class="modal fade"
+  id="deleteModal"
+  tabindex="-1"
+  aria-labelledby="deleteModal"
+  aria-hidden="true"
+>
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h1 class="modal-title fs-5" id="exampleModalLabel">
+          Are you sure you want to delete?
+        </h1>
+        <button
+          type="button"
+          class="btn-close"
+          data-bs-dismiss="modal"
+          aria-label="Close"
+        ></button>
+      </div>
+      <div class="modal-body">
+        <p>This is a destructive action and it cannot be undone</p>
+        <div>
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-secondary"
+              data-bs-dismiss="modal"
+            >
+              No, cancel
+            </button>
+            <a
+              type="button"
+              class="btn btn-danger"
+              href="{% url 'delete_record' customer_record.id %}"
+              >Yes, delete</a
+            >
+          </div>
+        </div>
+      </div>
+    </div>
+    {% endblock %}
+  </div>
+</div>
